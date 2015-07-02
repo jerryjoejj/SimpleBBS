@@ -1,7 +1,6 @@
 <!-- 树状形式展现帖子 -->
 
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
+
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.lovemanai.entity.Article" %>
 <%@page import="com.lovemanai.db.DB" %>
@@ -10,8 +9,10 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.sql.ResultSet" %>
 <%@page import="java.util.Date" %>
-
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.sql.SQLException" %>
+
 <%!
 	private void tree(List<Article> articles, int id, int grade) {
 		String sql = "select * from article where pid = " + id;

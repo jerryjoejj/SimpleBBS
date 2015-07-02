@@ -4,18 +4,21 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	int errorCode = Integer.parseInt(request.getParameter("errorCode"));
+	
 	switch(errorCode) {
 		case 1:
 			%>
 				<script type="text/javascript">
-					alter("帖子id错误")
+					alert("帖子id错误");
 				</script> 
 			<%
+			break;
 		case 2:
 			%>
 				<script type="text/javascript">
-					alter("访问的帖子不存在")
-				</script> 
+					alert("访问的帖子不存在");
+				</script>
 			<%
+			break;
 	}
 %>

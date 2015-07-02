@@ -17,7 +17,7 @@
 	if(strId == null || strId.trim() == null) {
 		errorCode = 1;//错误代码为1，传入帖子编码错误 
 		%>
-			<jsp:forward page="" >
+			<jsp:forward page="error_page.jsp" >
 				<jsp:param value="<%=errorCode %>" name="errorCode"/>
 			</jsp:forward>
 		<%
@@ -30,7 +30,7 @@
 	} catch(NumberFormatException e) {
 		errorCode = 1;
 		%>
-			<jsp:forward page="" >
+			<jsp:forward page="error_page.jsp" >
 				<jsp:param value="<%=errorCode %>" name="errorCode"/>
 			</jsp:forward>
 		<%
@@ -49,7 +49,7 @@
 	if(a == null) {
 		errorCode = 2;//错误代码为2，访问帖子不存在
 		%>
-			<jsp:forward page="" >
+			<jsp:forward page="error_page.jsp" >
 				<jsp:param value="<%=errorCode %>" name="errorCode"/>
 			</jsp:forward>
 		<%

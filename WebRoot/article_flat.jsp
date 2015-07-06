@@ -31,6 +31,7 @@
 %>
 
 <%
+	
 	List<Article> articles = new ArrayList<Article>();
 	tree(articles, 1);
 %>
@@ -67,7 +68,7 @@
 <div  class="tabbox">
   <div  class="tab_z01"> <a  class="sd03 fl"  href="http://bbs.51cto.com/forumdisplay.php?fid=133">全部主题</a></div>
   <div  class="fr"  style="width:308px;">
-    <div  class="btnbox"  id="newspecial"> <a  href="http://bbs.51cto.com/post.php?action=newthread&fid=133&extra=page%3D1"  title="发新话题"> <img  src="./page_style/newtopic_hov.gif"  class="fr" /> </a>
+    <div  class="btnbox"  id="newspecial"> <a  href="post.jsp"  title="发新话题"> <img  src="./page_style/newtopic_hov.gif"  class="fr" /> </a>
       <div  id="newspecial_menu"  style="display:none;"  class="tw_float">
         <ul>
           <li><a  href="http://bbs.51cto.com/post.php?action=newthread&fid=133&extra=page%3D1"><img  src="./page_style/folder_s.gif"  />发新话题</a></li>

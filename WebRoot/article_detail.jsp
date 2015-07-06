@@ -8,8 +8,12 @@
 <%@page import="com.lovemanai.db.DB" %>
 
 <%
+//从数据库中取出一篇帖子展示
 	request.setCharacterEncoding("UTF-8");
 	String strId = request.getParameter("id");
+	
+	int rootId = Integer.parseInt(request.getParameter("rootid"));
+	
 	Article a = null;
 	int errorCode = 0;
 	
@@ -36,12 +40,9 @@
 		<%
 		return;
 	}
-%>
-
-
-<%
+	
 	String sql = "select * from article where id = " + id;
-	ResultSet rs =(ResultSet)DB.excuteSQL(sql);
+	ResultSet rs = DB.excuteSelect(sql);
 	if(rs.next()) {
 		a = Article.initFromResultSet(rs);
 	}
@@ -56,6 +57,7 @@
 		return;
 	}
 %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0042)http://bbs.51cto.com/thread-1139316-1.html -->
@@ -75,33 +77,16 @@
 <link href="./page_style/shCore.css" type="text/css" rel="stylesheet" />
 <link href="./page_style/shThemeDefault.css" type="text/css" rel="stylesheet" />
 <link href="./page_style/bbspass.css" rel="stylesheet" type="text/css" />
+
+<script src="ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="ckeditor/samples/sample.css" />
 </head>
 
 <body>
 <div class="first"> <a href="http://bbs.51cto.com/"><img src="./page_style/logo.jpg" /></a></div>
-<div class="w960">
-  <div class="pagebox">
-    <ul>
-      <li><a href="http://bbs.51cto.com/forum-133-1.html" class="pre">返回列表</a></li>
-      <li><a class="abg">1</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=2">2</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=3">3</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=4">4</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=5">5</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=6">6</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=7">7</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=8">8</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=9">9</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=10">10</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=18" class="last">... 18</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=2" class="next">下一页</a></li>
-    </ul>
-  </div>
-</div>
 <div class="clear hr10"></div>
 <div class="tz_main">
-  <form method="post" name="modactions">
-    <input type="hidden" name="formhash" value="0c6e4035" />
+  <form method="post" name="modactions" action="reply_detail.jsp">
     <table id="pid5824360" summary="pid5824360" width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody>
         <tr>
@@ -170,8 +155,22 @@
         </tr>
       </tbody>
     </table>
+   
+    <input type="hidden" name="pid" value="<%=id %>" />
+	<input type="hidden" name="rootid" value="<%=rootId %>" />
+	<div align="left">
+		<label>
+			请输入标题：
+		</label>
+		<input type="text" name="title" /><br />
+		<label for="editor1">
+			请输入回复内容：
+		</label>
+		<textarea class="ckeditor" cols="80" id="editor1" name="cont" rows="10"></textarea>
+		<input type="submit" value="回复" />
+	</div>
+	
   </form>
-  <!--提交--> 
 </div>
 <div class="w960">
   <div class="pagebox">

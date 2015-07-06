@@ -16,7 +16,7 @@
 <%!
 	private void tree(List<Article> articles, int id, int grade) {
 		String sql = "select * from article where pid = " + id;
-		ResultSet rs = (ResultSet)DB.excuteSQL(sql);
+		ResultSet rs = DB.excuteSelect(sql);
 		try {
 			while(rs.next()) {
 				Article a = Article.initFromResultSet(rs);
@@ -109,7 +109,7 @@
           </tr>
           <tr  class="t_item">
             <td  width="27"  align="center"  valign="middle"><a  href="javascript:void(0)"></a></td>
-            <td width="32"  colspan="3"  align="left"  valign="middle"  class="common"><span  id="thread_1139316"> <a  href="article_detail.jsp?id=<%=a.getId() %>"  target="_blank"  ><%=pStr + a.getTitle() %></a> </span></td>
+            <td width="32"  colspan="3"  align="left"  valign="middle"  class="common"><span  id="thread_1139316"> <a  href="article_detail.jsp?id=<%=a.getId() %>&rootid=<%=a.getRootId() %>"  target="_blank"  ><%=pStr + a.getTitle() %></a> </span></td>
             <td  width="120"  align="left"  valign="middle"  class="by"><a  href="http://bbs.51cto.com/space-uid-9737346.html">lovemanai</a> <br />
               <%=new SimpleDateFormat("yyyy-MM-dd HH:MM").format(new Date(System.currentTimeMillis())) %> </td>
             <td  width="70"  align="left"  valign="middle"  class="td03"><a  href="http://bbs.51cto.com/thread-1139316-1.html"  target="_blank">348</a> <br />

@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.lovemanai.util.Config;
@@ -33,7 +35,7 @@ public class DB {
 	 * @param sql
 	 * @return
 	 */
-	private static ResultSet excuteSelect(String sql) {
+	public static ResultSet excuteSelect(String sql) {
 		ResultSet rs = null;
 		getConn();
 		try {
@@ -49,7 +51,7 @@ public class DB {
 	 * 执行一条DML语句（即insert，update，delete语句）
 	 * @param sql
 	 */
-	private static void excuteDML(String sql) {
+	public static void excuteDML(String sql) {
 		try {
 			PreparedStatement pStat = createPreparedStatement(sql);
 			pStat.executeUpdate(sql);
@@ -57,23 +59,50 @@ public class DB {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * 传入一条SQL语句，判断语句首个单词
-	 * 若为select，执行excuteSelect()方法，执行成功，返回一个ResultSet对象
-	 * 否则执行excuteDML()方法，执行成功，返回1
+	 * 针对形如insert into article values(?,?,?)这样的DML语句执行的修正
+	 * 传入一条上述sql语句，并且将问号代表的参数一并传入，替换掉所有问号内容产生一条DML语句，并执行
 	 * @param sql
-	 * @return
+	 * @param object
 	 */
-	public static Object excuteSQL(String sql) {
-		String[] str = sql.split(" ");
-		if(str[0].trim().equalsIgnoreCase("select")) {
-			return excuteSelect(sql);
-		} else {
-			excuteDML(sql);
-			return null;
+	public static void excuteDML(String sql, Object... object) {
+	
+		List<String> sbList = new ArrayList<String>();
+		String str = new String();
+		StringBuilder sqlRebuilt = new StringBuilder();
+		int j = 0;
+		for(int i = 0; i < sql.length(); i++) {
+			char[] c = new char[1];
+			c[0] = sql.charAt(i);
+			str = new String(c);
+			if(str.equals("?")) {
+				if(object[j].getClass().getTypeName().equals("java.lang.Integer")){
+					str = (Integer)object[j] + "";
+					j++;
+				} else if(object[j].getClass().getTypeName().equals("java.lang.Double")) {
+					str = (Double)object[j] + "";
+					j++;
+				} else if(object[j].getClass().getTypeName().equals("java.lang.Float")) {
+					str = (Float)object[j] + "";
+					j++;
+				} else if(object[j].getClass().getTypeName().equals("java.lang.String")) {
+					str = "'" + (String)object[j] + "'";
+					j++;
+				}
+				
+			}
+			sbList.add(str);
 		}
+		
+		for(int i = 0; i < sbList.size(); i++) {
+			sqlRebuilt.append(sbList.get(i));
+		}
+		
+		excuteDML(sqlRebuilt.toString());
 	}
+	
+
 	
 	/**
 	 * 创建一个PreparedStatement对象
@@ -82,6 +111,9 @@ public class DB {
 	 */
 	private static PreparedStatement createPreparedStatement(String sql) {
 		PreparedStatement pStat = null;
+		if(conn == null) {
+			getConn();
+		}
 		try {
 			pStat = conn.prepareStatement(sql);
 		} catch (SQLException e) {

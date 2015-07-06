@@ -79,7 +79,9 @@ public class Article {
 		setGrade(0);
 	}
 	
-	
+	public Article() {
+		
+	}
 	
 	public static Article initFromResultSet(ResultSet rs) {
 		Article article = null;

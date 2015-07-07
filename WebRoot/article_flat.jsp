@@ -13,27 +13,46 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.sql.SQLException" %>
 
-<%!
-	private void tree(List<Article> articles, int rootId) {
-		String sql = "select * from article where pid = 0";
-		ResultSet rs = DB.excuteSelect(sql);
-		try {
-			while(rs.next()) {
-				Article a = Article.initFromResultSet(rs);
-				articles.add(a);
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DB.close(rs);
-		}
-	}
-%>
+
 
 <%
+//分页问题
+	int pageSize = 3;
+
+	String strPageNo = request.getParameter("pageNo");
+	int pageNo = 0;
+	
+	int totalRecords = 0;
+	ResultSet rsPage = DB.excuteSelect("select count(*) from article where pid = 0");
+	if(rsPage.next()) {
+		totalRecords = rsPage.getInt(1);
+	}
+	
+	if(strPageNo == null || strPageNo.trim().equals("") || strPageNo.trim().equals("0")) {
+		pageNo = 1;
+	}
+	 else {
+		pageNo = Integer.parseInt(strPageNo);
+	}
+	
+	int totalPage = totalRecords/pageSize + 1;
+	if(pageNo > totalPage) {
+		pageNo = totalPage;
+	}
+	int startPos = (pageNo - 1) * pageSize; 
+	ResultSet rs = DB.excuteSelect("select * from article where pid = 0 order by pdate desc limit " + startPos + ","+ pageSize);
 	
 	List<Article> articles = new ArrayList<Article>();
-	tree(articles, 1);
+	try {
+		while(rs.next()) {
+			Article a = Article.initFromResultSet(rs);
+			articles.add(a);
+		}
+	} catch(SQLException e) {
+		e.printStackTrace();
+	} finally {
+		DB.close(rs);
+	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -124,27 +143,9 @@
 </div>
 <div  class="pagebox">
   <ul>
-    <li><a  class="abg">1</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-2.html">2</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-3.html">3</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-4.html">4</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-5.html">5</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-6.html">6</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-7.html">7</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-8.html">8</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-9.html">9</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-10.html">10</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-11.html">11</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-12.html">12</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-13.html">13</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-14.html">14</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-15.html">15</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-16.html">16</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-17.html">17</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-18.html">18</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-19.html">19</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-20.html">20</a></li>
-    <li><a  href="http://bbs.51cto.com/forum-133-2.html"  class="next">下一页</a></li>
+  	<li><a  href="article_flat.jsp?pageNo=<%=pageNo - 1 %>" >上一页</a></li>
+    <li><a  href="article_flat.jsp?pageNo=<%=1 %>">1</a></li>
+    <li><a  href="article_flat.jsp?pageNo=<%=pageNo + 1 %>" >下一页</a></li>
   </ul>
 </div>
 <div  style="display:none">  

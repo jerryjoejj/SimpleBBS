@@ -69,6 +69,12 @@
 	}
 %>
 
+<%
+	String url = request.getRequestURI() + (request.getQueryString() == null ? "" :("?" + request.getQueryString()));
+	String[] urlSplit = url.split("/");
+	String jspName = urlSplit[urlSplit.length - 1];
+	System.out.println(jspName);
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0042)http://bbs.51cto.com/thread-1139316-1.html -->
@@ -179,6 +185,7 @@
    
     <input type="hidden" name="pid" value="<%=id %>" />
 	<input type="hidden" name="rootid" value="<%=rootId %>" />
+	<input type="hidden" name="jspName" value="<%=jspName %>"/>
 	<div align="left">
 		<label>
 			请输入标题：
@@ -193,26 +200,7 @@
 	
   </form>
 </div>
-<div class="w960">
-  <div class="pagebox">
-    <ul>
-      <li><a href="http://bbs.51cto.com/forum-133-1.html" class="pre">返回列表</a></li>
-      <li><a class="abg">1</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=2">2</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=3">3</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=4">4</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=5">5</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=6">6</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=7">7</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=8">8</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=9">9</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=10">10</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=18" class="last">... 18</a></li>
-      <li><a href="http://bbs.51cto.com/viewthread.php?tid=1139316&extra=&page=2" class="next">下一页</a></li>
-    </ul>
-  </div>
-</div>
-<div class="clear hr10"></div>
+
 
 </body>
 </html>

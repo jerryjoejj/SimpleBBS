@@ -59,6 +59,13 @@
 %>
 
 
+<%
+	String url = request.getRequestURI() + (request.getQueryString() == null ? "" :("?" + request.getQueryString()));
+	String[] urlSplit = url.split("/");
+	String jspName = urlSplit[urlSplit.length - 1];
+	
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0042)http://bbs.51cto.com/thread-1139316-1.html -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -158,6 +165,7 @@
    
     <input type="hidden" name="pid" value="<%=id %>" />
 	<input type="hidden" name="rootid" value="<%=rootId %>" />
+	<input type="hidden" name="jspName" value="<%=jspName %>"/>
 	<div align="left">
 		<label>
 			请输入标题：

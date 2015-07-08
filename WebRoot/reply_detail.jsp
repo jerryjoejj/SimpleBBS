@@ -19,7 +19,6 @@
 
 <%
 		String jspName = request.getParameter("jspName");
-System.out.println(jspName);
 %>
 <html>
 <head>
@@ -44,7 +43,6 @@ function delayURL(url) {
 	<script type="text/javascript">
 		var url = "<%= jspName%>";
 		delayURL(url);
-alert(url);
 	</script>
 </body>
 

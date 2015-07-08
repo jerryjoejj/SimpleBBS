@@ -55,6 +55,11 @@
 	}
 %>
 
+<%
+	String url = request.getScheme() + "://" + request.getHeader("host") 
+				+ request.getRequestURI() + (request.getQueryString() == null ? "" : "?" + request.getQueryString()) ;
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0037)http://bbs.51cto.com/forum-133-1.html -->
 <html  xmlns="http://www.w3.org/1999/xhtml">
@@ -106,7 +111,6 @@
     </div>
   </div>
   <form  method="post"  name="moderate"  action="http://bbs.51cto.com/topicadmin.php?action=moderate&fid=133">
-    <input  type="hidden"  name="formhash"  value="c109aa03" />
     <div  class="trbg">
       <table  width="100%"  border="0"  cellspacing="0"  cellpadding="0"  align="center"  id="mytable">
       
@@ -119,9 +123,10 @@
       
         <tbody>
           <tr>
-            <td  colspan="8"  align="center"  valign="middle"  id="fjx"  class="fjx"></td>
+            <td  colspan="8"  align="center"  valign="middle"  id="fjx"  class="fjx"></td>  
           </tr>
           <tr  class="t_item">
+          	<td><a href="delete_article_flat.jsp?rootid=<%=a.getRootId()%>&from=<%=url%>">DEL</a></td> 
             <td  width="27"  align="center"  valign="middle"><a  href="javascript:void(0)"></a></td>
             <td width="32"  colspan="3"  align="left"  valign="middle"  class="common"><span  id="thread_1139316"> <a  href="article_flat_detail.jsp?id=<%=a.getId() %>&rootid=<%=a.getRootId() %>"  target="_blank"  ><%=a.getTitle() %></a> </span></td>
             <td  width="120"  align="left"  valign="middle"  class="by"><a  href="http://bbs.51cto.com/space-uid-9737346.html">lovemanai</a> <br />

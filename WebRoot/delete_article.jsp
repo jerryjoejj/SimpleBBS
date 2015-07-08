@@ -1,10 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.lovemanai.db.DB" %>
 
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@include file="_sessioncheck.jsp" %>
 
 <%
 	String goTo = request.getParameter("goto");

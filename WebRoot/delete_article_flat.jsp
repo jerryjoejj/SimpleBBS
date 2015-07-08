@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.lovemanai.db.DB" %>
+<%@include file="_sessioncheck.jsp" %>
+
 
 <%
 String path = request.getContextPath();

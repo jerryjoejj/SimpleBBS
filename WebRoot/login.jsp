@@ -12,7 +12,6 @@
 			session.setAttribute("adminLogined", "true");
 			response.sendRedirect("article_flat.jsp");
 		} else {
-			
 			out.println("用户名或密码错误！");
 		}
 	}

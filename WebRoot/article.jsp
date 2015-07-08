@@ -108,7 +108,14 @@
             <td  colspan="8"  align="center"  valign="middle"  id="fjx"  class="fjx"></td>
           </tr>
           <tr  class="t_item">
+          	<%
+          		String adminLogined = (String)session.getAttribute("adminLogined");
+          		if(adminLogined != null && adminLogined.trim().equals("true")) {
+          	%>
           	<td><a href="delete_article.jsp?pid=<%=a.getpId()%>&goto=article.jsp&rootid=<%=a.getRootId()%>">DEL</a></td>
+          	<%
+          		}
+          	%>
             <td  width="27"  align="center"  valign="middle"><a  href="javascript:void(0)"></a></td>
             <td width="32"  colspan="3"  align="left"  valign="middle"  class="common"><span  id="thread_1139316"> <a  href="article_detail.jsp?id=<%=a.getId() %>&rootid=<%=a.getRootId() %>"  target="_blank"  ><%=pStr + a.getTitle() %></a> </span></td>
             <td  width="120"  align="left"  valign="middle"  class="by"><a  href="http://bbs.51cto.com/space-uid-9737346.html">lovemanai</a> <br />

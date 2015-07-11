@@ -13,13 +13,13 @@ pdate datetime,
 isleaf int #1-not leaf 0-leaf
 );
 
-insert into article values (null, 0, 1, 'ÂìÒÏ´óÕ½´óÏó', 'ÂìÒÏ´óÕ½´óÏó', now(), 1);
-insert into article values (null, 1, 1, '´óÏó±»´òÅ¿ÏÂÁË', '´óÏó±»´òÅ¿ÏÂÁË',now(), 1);
-insert into article values (null, 2, 1, 'ÂìÒÏÒ²²»ºÃ¹ı','ÂìÒÏÒ²²»ºÃ¹ı', now(), 0);
-insert into article values (null, 2, 1, 'Ï¹Ëµ', 'Ï¹Ëµ', now(), 1);
-insert into article values (null, 4, 1, 'Ã»ÓĞÏ¹Ëµ', 'Ã»ÓĞÏ¹Ëµ', now(), 0);
-insert into article values (null, 1, 1, 'ÔõÃ´¿ÉÄÜ', 'ÔõÃ´¿ÉÄÜ', now(), 1);
-insert into article values (null, 6, 1, 'ÔõÃ´Ã»ÓĞ¿ÉÄÜ', 'ÔõÃ´Ã»ÓĞ¿ÉÄÜ', now(), 0);
-insert into article values (null, 6, 1, '¿ÉÄÜĞÔÊÇºÜ´óµÄ', '¿ÉÄÜĞÔÊÇºÜ´óµÄ', now(), 0);
-insert into article values (null, 2, 1, '´óÏó½øÒ½ÔºÁË', '´óÏó½øÒ½ÔºÁË', now(), 1);
-insert into article values (null, 9, 1, '»¤Ê¿ÊÇÂìÒÏ', '»¤Ê¿ÊÇÂìÒÏ', now(), 0);
+insert into article values (null, 0, 1, 'èš‚èšå¤§æˆ˜å¤§è±¡', 'èš‚èšå¤§æˆ˜å¤§è±¡', now(), 1);
+insert into article values (null, 1, 1, 'å¤§è±¡è¢«æ‰“è¶´ä¸‹äº†', 'å¤§è±¡è¢«æ‰“è¶´ä¸‹äº†',now(), 1);
+insert into article values (null, 2, 1, 'èš‚èšä¹Ÿä¸å¥½è¿‡','èš‚èšä¹Ÿä¸å¥½è¿‡', now(), 0);
+insert into article values (null, 2, 1, 'çè¯´', 'çè¯´', now(), 1);
+insert into article values (null, 4, 1, 'æ²¡æœ‰çè¯´', 'æ²¡æœ‰çè¯´', now(), 0);
+insert into article values (null, 1, 1, 'æ€ä¹ˆå¯èƒ½', 'æ€ä¹ˆå¯èƒ½', now(), 1);
+insert into article values (null, 6, 1, 'æ€ä¹ˆæ²¡æœ‰å¯èƒ½', 'æ€ä¹ˆæ²¡æœ‰å¯èƒ½', now(), 0);
+insert into article values (null, 6, 1, 'å¯èƒ½æ€§æ˜¯å¾ˆå¤§çš„', 'å¯èƒ½æ€§æ˜¯å¾ˆå¤§çš„', now(), 0);
+insert into article values (null, 2, 1, 'å¤§è±¡è¿›åŒ»é™¢äº†', 'å¤§è±¡è¿›åŒ»é™¢äº†', now(), 1);
+insert into article values (null, 9, 1, 'æŠ¤å£«æ˜¯èš‚èš', 'æŠ¤å£«æ˜¯èš‚èš', now(), 0);
